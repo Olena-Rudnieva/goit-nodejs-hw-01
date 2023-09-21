@@ -10,3 +10,6 @@ https://monosnap.com/file/SDUQmETlXDJgdR2VaA6CqJIvHqY18r
 ![Add Contact](https://github.com/Olena-Rudnieva/goit-nodejs-hw-01/blob/main/screenshots/3.jpg)
 https://monosnap.com/file/qD7wdC9LCIm0WVad3R8ZykZKbsmfJr
 
+![Delete Contact](https://github.com/Olena-Rudnieva/goit-nodejs-hw-01/blob/main/screenshots/4.jpg)
+https://monosnap.com/file/Id22miZq39O4K7kk4tPm2pmUk24uQq
+
