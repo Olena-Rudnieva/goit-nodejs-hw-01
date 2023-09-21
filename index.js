@@ -1,26 +1,40 @@
 const fs = require('fs');
+const { program } = require('commander');
 
-const { listContacts, getContactById, addContact } = require('./contacts');
+const {
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
+} = require('./contacts');
 
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
-    case 'read':
+    case 'list':
       const allContacts = await listContacts();
-      return console.log(allContacts);
-    case 'getById':
+      return console.table(allContacts);
+    case 'get':
       const contact = await getContactById(id);
-      return console.log(contact);
+      return console.table(contact);
     case 'add':
       const newContact = await addContact({ name, email, phone });
-      return console.log(newContact);
+      return console.table(newContact);
+    case 'remove':
+      const deleteContact = await removeContact(id);
+      return console.table(deleteContact);
+    default:
+      return console.warn('\x1B[31m Unknown action type!');
   }
 };
 
-// invokeAction({action: 'read'});
-// invokeAction({ action: 'getById', id: 'AeHIrLTr6JkxGE6SN-0Rw' });
-invokeAction({
-  action: 'add',
-  name: 'Paul Raymond',
-  email: 'pulla.ante@vestibul.co.uk',
-  phone: '(333) 914-3792',
-});
+program
+  .option('-a, --action <type>', 'choose action')
+  .option('-i, --id <type>', 'user id')
+  .option('-n, --name <type>', 'user name')
+  .option('-e, --email <type>', 'user email')
+  .option('-p, --phone <type>', 'user phone');
+
+program.parse();
+
+const options = program.opts();
+invokeAction(options);
